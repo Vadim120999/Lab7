@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.unit.Dp
 
+
 @Composable
 fun NoteColor(
     color: Color,
