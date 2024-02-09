@@ -10,14 +10,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.foundation.layout.padding
 
 @Composable
 fun NoteColor(){
     Box(
         modifier = Modifier
+            .padding(4.dp)
             .size(40.dp)
             .clip(CircleShape)
             .background(Color.Red)
+            .border(
+                BorderStroke(
+                    2.dp,
+                    SolidColor(Color.Black)
+
+                ),
+                CircleShape
+            )
 
     )
 }
