@@ -11,6 +11,9 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Switch
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -197,6 +200,27 @@ private fun SaveNoteTopAppBar(
         }
     )
 }
+
+@Composable
+private fun NoteCheckOption(
+    isChecked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    Row(
+        Modifier
+            .padding(8.dp)
+            .padding(top = 16.dp)
+    ) {
+        Text(
+            text = "Can note be checked off?", modifier = Modifier.weight(1f)
+        )
+        Switch(
+            checked = isChecked,
+            onCheckedChange = onCheckedChange,
+            modifier = Modifier.padding(start = 8.dp)
+        )
+    }
+}
 @Composable
 private fun PickedColor(color: ColorModel){
     Row (
@@ -218,6 +242,25 @@ private fun PickedColor(color: ColorModel){
     }
 }
 
+@Composable
+private fun ContentTextField(
+    modifier: Modifier = Modifier,
+    label: String,
+    text: String,
+    onTextChange: (String) -> Unit
+) {
+    TextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = { Text(label)},
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.surface
+        )
+    )
+}
 @Preview
 @Composable
 fun SaveNoteTopAppBarPreview(){
@@ -234,4 +277,18 @@ fun SaveNoteTopAppBarPreview(){
 @Composable
 fun PickedColorPreview() {
     PickedColor(ColorModel.DEFAULT)
+}
+@Preview
+@Composable
+fun NoteCheckOptionPreview() {
+    NoteCheckOption(false) {}
+}
+@Preview
+@Composable
+fun ContentTextFieldPreview() {
+    ContentTextField(
+        label = "Title",
+        text = "",
+        onTextChange = {}
+    )
 }
