@@ -14,6 +14,7 @@ import com.topic2.android.notes.domain.model.NoteModel
 import com.topic2.android.notes.ui.components.Note
 import android.annotation.SuppressLint
 import androidx.compose.material.*
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.rememberCoroutineScope
 import com.topic2.android.notes.routing.Screen
 import com.topic2.android.notes.ui.components.AppDrawer
@@ -50,6 +51,19 @@ fun NotesScreen(
                                 }
                             }
                         )
+        },
+        floatingActionButtonPosition = FabPosition.End,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { viewModel.onCreateNewNoteClick() },
+                contentColor = MaterialTheme.colors.background,
+                content = {
+                    Icon(
+                        imageVector = Icons.Filled.Add,
+                        contentDescription = "Add Note Button"
+                    )
+                }
+            )
         },
         content = {
             if (notes.isNotEmpty()) {
