@@ -29,13 +29,12 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
     private var _noteEntry = MutableLiveData(NoteModel())
     val noteEntry: LiveData<NoteModel> = _noteEntry
 
+    private var _selectedNotes = MutableLiveData<List<NoteModel>>(listOf())
+    val selectedNotes: LiveData<List<NoteModel>> = _selectedNotes
+
     val colors: LiveData<List<ColorModel>> by lazy {
         repository.getAllColors()
     }
-
-
-    private var _selectedNotes = MutableLiveData<List<NoteModel>>(listOf())
-    val selectedNotes: LiveData<List<NoteModel>> = _selectedNotes
 
     fun onCreateNewNoteClick() {
         NotesRouter.navigateTo(Screen.SaveNote)
