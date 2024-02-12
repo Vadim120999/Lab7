@@ -292,7 +292,7 @@ private fun PickedColor(color: ColorModel){
             .padding(top = 16.dp)
     ) {
         Text(
-            text = "", modifier = Modifier
+            text = "Picked color", modifier = Modifier
                 .weight(1f)
                 .align(Alignment.CenterVertically)
         )
@@ -322,7 +322,7 @@ private fun NoteCheckOption(
             .padding(top = 16.dp)
     ) {
         Text(
-            text = "", modifier = Modifier.weight(1f)
+            text = "Can note be checked off?", modifier = Modifier.weight(1f)
         )
         Switch(
             checked = isChecked,
@@ -392,17 +392,17 @@ private fun SaveNoteContent(
 
             }
         )
-    }
-    val canBeCheckedOff: Boolean = note.isCheckedOff != null
+        val canBeCheckedOff: Boolean = note.isCheckedOff != null
 
-    NoteCheckOption(
-        isChecked = canBeCheckedOff,
-        onCheckedChange = {
-                canBeCheckedOffNewValue ->
-            onNoteChange.invoke(note.copy(isCheckedOff = canBeCheckedOffNewValue))
-        }
-    )
-    PickedColor(color = note.color)
+        NoteCheckOption(
+            isChecked = canBeCheckedOff,
+            onCheckedChange = { canBeCheckedOffNewValue ->
+                val isCheckedOff: Boolean? = if (canBeCheckedOffNewValue) false else null
+                onNoteChange.invoke(note.copy(isCheckedOff = canBeCheckedOffNewValue))
+            }
+        )
+        PickedColor(color = note.color)
+    }
 }
 
 @Preview(showBackground = true)
