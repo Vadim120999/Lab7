@@ -33,11 +33,24 @@ fun NotesScreen(
 
     Scaffold (topBar = {
         TopAppBar(
-            title = "Notes",
-            icon = Icons.Filled.List,
-            onIconClick = {
-                coroutineScope.launch {
-                    scaffoldState.drawerState.open()
+            title = {
+                Text(
+                    text = "Notes",
+                    color = MaterialTheme.colors.onPrimary
+                )
+            },
+            navigationIcon = {
+                IconButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            scaffoldState.drawerState.open()
+                        }
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.List,
+                        contentDescription = "Drawer Button"
+                    )
                 }
             }
         )
